@@ -21,7 +21,7 @@ del "build\*.nupkg"
 REM "tools\nuget.exe" setApiKey %1
 
 ::PACK
-"tools\nuget.exe" pack "src\ScriptCs.FluentAssertions\ScriptCs.FluentAssertionsMoq.nuspec" -OutputDirectory build -Version 1.0.0.0
+"tools\nuget.exe" pack "src\ScriptCs.FluentAssertions\ScriptCs.FluentAssertions.nuspec" -OutputDirectory build -Version 1.0.0.0
 
 ::DEPLOY
 REM "tools\nuget.exe" push "build\*.nupkg"
