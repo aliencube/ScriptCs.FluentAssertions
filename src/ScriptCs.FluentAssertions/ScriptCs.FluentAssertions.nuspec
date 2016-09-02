@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>ScriptCs.FluentAssertions</id>
+    <version>$version$</version>
+    <title>ScriptCs.FluentAssertions</title>
+    <authors>Aliencube Community</authors>
+    <owners>justinyoo</owners>
+    <licenseUrl>https://github.com/aliencube/ScriptCs.FluentAssertions/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/aliencube/ScriptCs.FluentAssertions</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <summary>
+      This provides an implementation of the FluentAssertions library for Script CS.
+    </summary>
+    <description>
+      <![CDATA[
+        This provides an implementation of the FluentAssertions library for Script CS.
+      ]]>
+    </description>
+    <copyright>Aliencube Community. All rights reserved.</copyright>
+    <tags>Aliencube, ScriptCs, Script, Pack, FluentAssertions</tags>
+    <dependencies>
+      <dependency id="FluentAssertions" version="3.5.0" />
+      <dependency id="ScriptCs.Contracts" version="0.16.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\**\Aliencube.ScriptCs.FluentAssertions.*" target="lib" />
+  </files>
+</package>
