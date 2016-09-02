@@ -20,7 +20,7 @@
     <copyright>Aliencube Community. All rights reserved.</copyright>
     <tags>Aliencube, ScriptCs, Script, Pack, FluentAssertions</tags>
     <dependencies>
-      <dependency id="FluentAssertions" version="4.13.0" />
+      <dependency id="FluentAssertions" version="3.5.0" />
       <dependency id="ScriptCs.Contracts" version="0.16.1" />
     </dependencies>
   </metadata>
