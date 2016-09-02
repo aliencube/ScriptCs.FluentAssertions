@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections;
+using System.Linq;
+using System.Threading.Tasks;
+
 using Aliencube.ScriptCs.FluentAssertions.Tests.Fixtures;
 
 using FluentAssertions;
+using FluentAssertions.Collections;
 using FluentAssertions.Numeric;
 using FluentAssertions.Primitives;
+using FluentAssertions.Specialized;
 
 using Xunit;
 
@@ -211,6 +217,123 @@ namespace Aliencube.ScriptCs.FluentAssertions.Tests
         {
             var result = this._context.Should(actualValue);
             result.Should().BeOfType<NullableBooleanAssertions>();
+        }
+
+        /// <summary>
+        /// Tests whether the method should return result or not.
+        /// </summary>
+        [Fact]
+        public void Given_DateTime_Should_ShouldReturn_Result()
+        {
+            var actualValue = DateTime.Now;
+            var result = this._context.Should(actualValue);
+            result.Should().BeOfType<DateTimeAssertions>();
+        }
+
+        /// <summary>
+        /// Tests whether the method should return result or not.
+        /// </summary>
+        [Fact]
+        public void Given_NullableDateTime_Should_ShouldReturn_Result()
+        {
+            var actualValue = (DateTime?) DateTime.Now;
+            var result = this._context.Should(actualValue);
+            result.Should().BeOfType<NullableDateTimeAssertions>();
+        }
+
+        /// <summary>
+        /// Tests whether the method should return result or not.
+        /// </summary>
+        [Fact]
+        public void Given_DateTimeOffset_Should_ShouldReturn_Result()
+        {
+            var actualValue = DateTimeOffset.Now;
+            var result = this._context.Should(actualValue);
+            result.Should().BeOfType<DateTimeOffsetAssertions>();
+        }
+
+        /// <summary>
+        /// Tests whether the method should return result or not.
+        /// </summary>
+        [Fact]
+        public void Given_NullableDateTimeOffset_Should_ShouldReturn_Result()
+        {
+            var actualValue = (DateTimeOffset?)DateTimeOffset.Now;
+            var result = this._context.Should(actualValue);
+            result.Should().BeOfType<NullableDateTimeOffsetAssertions>();
+        }
+
+
+        /// <summary>
+        /// Tests whether the method should return result or not.
+        /// </summary>
+        /// <param name="value1">Value 1.</param>
+        /// <param name="value2">Value 2.</param>
+        /// <param name="value3">Value 3.</param>
+        /// <param name="value4">Value 4.</param>
+        [Theory]
+        [InlineData(1, 2, 3, 4)]
+        public void Given_IEnumerable_Should_ShouldReturn_Result(int value1, int value2, int value3, int value4)
+        {
+            var actualValue = (IEnumerable) new[] { value1, value2, value3, value4 };
+            var result = this._context.Should(actualValue);
+            result.Should().BeOfType<NonGenericCollectionAssertions>();
+        }
+
+        /// <summary>
+        /// Tests whether the method should return result or not.
+        /// </summary>
+        /// <param name="value1">Value 1.</param>
+        /// <param name="value2">Value 2.</param>
+        /// <param name="value3">Value 3.</param>
+        /// <param name="value4">Value 4.</param>
+        [Theory]
+        [InlineData(1, 2, 3, 4)]
+        public void Given_IEnumerableT_Should_ShouldReturn_Result(int value1, int value2, int value3, int value4)
+        {
+            var actualValue = new[] { value1, value2, value3, value4 }.AsEnumerable();
+            var result = this._context.Should(actualValue);
+            result.Should().BeOfType<GenericCollectionAssertions<int>>();
+        }
+
+        /// <summary>
+        /// Tests whether the method should return result or not.
+        /// </summary>
+        /// <param name="value1">Value 1.</param>
+        /// <param name="value2">Value 2.</param>
+        /// <param name="value3">Value 3.</param>
+        /// <param name="value4">Value 4.</param>
+        [Theory]
+        [InlineData("a", "b", "c", "d")]
+        public void Given_IEnumerableString_Should_ShouldReturn_Result(string value1, string value2, string value3, string value4)
+        {
+            var actualValue = new[] { value1, value2, value3, value4 }.AsEnumerable();
+            var result = this._context.Should(actualValue);
+            result.Should().BeOfType<StringCollectionAssertions>();
+        }
+
+        /// <summary>
+        /// Tests whether the method should return result or not.
+        /// </summary>
+        [Fact]
+        public void Given_ActionWithException_ShouldThrow_ShouldReturn_Result()
+        {
+            Action action = () => { throw new NotImplementedException(); };
+
+            var result = this._context.ShouldThrow<NotImplementedException>(action);
+            result.Should().BeOfType<ExceptionAssertions<NotImplementedException>>();
+        }
+
+        /// <summary>
+        /// Tests whether the method should return result or not.
+        /// </summary>
+        [Fact]
+        public void Given_FuncWithException_ShouldThrow_ShouldReturn_Result()
+        {
+            Func<Task> func = () => { throw new NotImplementedException(); };
+
+            var result = this._context.ShouldThrow<NotImplementedException>(func);
+            result.Should().BeOfType<ExceptionAssertions<NotImplementedException>>();
         }
     }
 }
